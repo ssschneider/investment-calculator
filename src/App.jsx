@@ -1,8 +1,38 @@
+import { useState } from "react"
 import { Header } from "./components/Header"
 import { ResultsTable } from "./components/ResultsTable"
 import { UserInput } from "./components/UserInput"
+import { calculateInvestmentResults } from "./util/investment";
 
 function App() {
+  const [ investmentData, setInvestmentData ] = useState({});
+  const [ investmentsResults, setInvestmentResults ] = useState([]);
+
+  function handleDurationVerification (event) {
+    const durationField = Number(event.target.value);
+
+    if (durationField < 1) {
+      alert("You need to invest for at least a year.")
+    }
+  };
+
+  function handleUserInputInvestmentData (event) {
+    const fieldId = event.target.id;
+    const userInvestment = Number(event.target.value);
+
+    //console.log(fieldId, userInvestment);
+
+    const calculateInvestments = calculateInvestmentResults({
+      initialInvestment: 10000,
+      annualInvestment: 5000,
+      expectedReturn: 100000,
+      duration: 5,
+    });
+
+    setInvestmentResults(calculateInvestments);
+    //console.log(investmentsResults);
+  };
+
   return (
     <>
       <Header />
@@ -10,27 +40,32 @@ function App() {
         <section id="user-input">
           <UserInput 
             label="Initial Investment" 
-            id="initial-investment" 
-            placeholder="15000" 
+            id="initialInvestment" 
+            placeholder="15000"
+            onChange={handleUserInputInvestmentData}
           />
           <UserInput 
             label="Annual Investment" 
-            id="annual-investment" 
-            placeholder="5000" 
+            id="annualInvestment" 
+            placeholder="5000"
+            onChange={handleUserInputInvestmentData} 
           />
           <UserInput 
             label="Expected Return" 
-            id="expected-return" 
-            placeholder="50000" 
+            id="expectedReturn" 
+            placeholder="50000"
+            onChange={handleUserInputInvestmentData}
           />
           <UserInput 
             label="Duration" 
             id="duration" 
-            placeholder="2" 
+            placeholder="2"
+            onChange={handleUserInputInvestmentData}
+            onEnded={handleDurationVerification}
           />
         </section>
 
-        <ResultsTable />
+        <ResultsTable investmentsResults={investmentsResults} />
       </main>
     </>
   )
