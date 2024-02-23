@@ -32,17 +32,21 @@ body {
 }
 
 #user-input {
-  padding: 1rem;
+  padding: 2rem;
   max-width: 30rem;
   margin: 2rem auto;
   border-radius: 4px;
   background: linear-gradient(180deg, #307e6c, #2b996d);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
 .input-group {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 #user-input label {
@@ -62,6 +66,10 @@ body {
   background-color: transparent;
   color: #c2e9e0;
   font-size: 1rem;
+}
+
+#user-input input::placeholder {
+  color: #53887b;
 }
 
 #result {
