@@ -7,8 +7,7 @@ export function ResultsTable({ userInvestment }) {
 
 	return (
 		<>
-			{ investmentResults.length === 0 ? 
-				<p className="center">Let's start investing!</p> : 
+			{ investmentResults.length !== 0 && 
 				<table id="result">
 					<thead>
 						<tr>

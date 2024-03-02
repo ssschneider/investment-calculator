@@ -54,7 +54,11 @@ function App() {
           />
 				</section>
 
-				<ResultsTable userInvestment={userInvestment} />
+        {userInvestment.duration !== 0 ? 
+          <ResultsTable userInvestment={userInvestment} /> : 
+          <p className="center">Let's start investing! You need to do it for at least a year.</p>
+        }
+				
 			</main>
 		</>
 	);
