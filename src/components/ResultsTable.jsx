@@ -1,9 +1,11 @@
-export function ResultsTable({ investmentsResults }) {
-    console.log(investmentsResults[0]);
+export function ResultsTable({ userInvestment }) {
+    console.log(userInvestment);
+
+	
 
 	return (
 		<>
-			{investmentsResults < 1 && <p className="center">Let's start investing!</p>}
+			{/* {investmentsResults < 1 && <p className="center">Let's start investing!</p>}
 			<table id="result">
 				<thead>
 					<tr>
@@ -31,7 +33,7 @@ export function ResultsTable({ investmentsResults }) {
                         )
 					})}
 				</tbody>
-			</table>
+			</table> */}
 		</>
 	);
 }

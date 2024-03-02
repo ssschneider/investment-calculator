@@ -1,74 +1,63 @@
-import { useState } from "react"
-import { Header } from "./components/Header"
-import { ResultsTable } from "./components/ResultsTable"
-import { UserInput } from "./components/UserInput"
-import { calculateInvestmentResults } from "./util/investment";
+import { useState } from "react";
+import { Header } from "./components/Header";
+import { ResultsTable } from "./components/ResultsTable";
+import { UserInput } from "./components/UserInput";
 
 function App() {
-  const [ investmentData, setInvestmentData ] = useState({});
-  const [ investmentsResults, setInvestmentResults ] = useState([]);
+  const [ userInvestment, setUserInvestment ] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1000,
+    expectedReturn: 10,
+    duration: 3
+  });
 
-  function handleDurationVerification (event) {
-    const durationField = Number(event.target.value);
-
-    if (durationField < 1) {
-      alert("You need to invest for at least a year.")
-    }
-  };
-
-  function handleUserInputInvestmentData (event) {
-    const fieldId = event.target.id;
-    const userInvestment = Number(event.target.value);
-
-    //console.log(fieldId, userInvestment);
-
-    const calculateInvestments = calculateInvestmentResults({
-      initialInvestment: 10000,
-      annualInvestment: 5000,
-      expectedReturn: 100000,
-      duration: 5,
+  function handleChange (inputIdentifier, newValue) {
+    setUserInvestment ( prevUserInvestment => {
+        return {
+            ...prevUserInvestment,
+            [inputIdentifier]: Number(newValue)
+        };
     });
+};
 
-    setInvestmentResults(calculateInvestments);
-    //console.log(investmentsResults);
-  };
-
-  return (
-    <>
-      <Header />
-      <main>
-        <section id="user-input">
-          <UserInput 
+	return (
+		<>
+			<Header />
+			<main>
+				<section id="user-input">
+					<UserInput 
             label="Initial Investment" 
-            id="initialInvestment" 
-            placeholder="15000"
-            onChange={handleUserInputInvestmentData}
+            id="initialInvestment"
+            onChange={handleChange}
+            userInvestment={userInvestment.initialInvestment}
           />
-          <UserInput 
+
+					<UserInput 
             label="Annual Investment" 
             id="annualInvestment" 
-            placeholder="5000"
-            onChange={handleUserInputInvestmentData} 
+            onChange={handleChange} 
+            userInvestment={userInvestment.annualInvestment}
           />
-          <UserInput 
+
+					<UserInput 
             label="Expected Return" 
             id="expectedReturn" 
-            placeholder="50000"
-            onChange={handleUserInputInvestmentData}
+            onChange={handleChange} 
+            userInvestment={userInvestment.expectedReturn}
           />
-          <UserInput 
+
+					<UserInput 
             label="Duration" 
             id="duration" 
-            placeholder="2"
-            onChange={handleUserInputInvestmentData}
-            onEnded={handleDurationVerification}
+            onChange={handleChange} 
+            userInvestment={userInvestment.duration}
           />
-        </section>
+				</section>
 
-        <ResultsTable investmentsResults={investmentsResults} />
-      </main>
-    </>
-  )
+				<ResultsTable userInvestment={userInvestment} />
+			</main>
+		</>
+	);
 }
 
-export default App
+export default App;
