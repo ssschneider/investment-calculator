@@ -47,7 +47,7 @@ This project was developed using:
 
 ## 💻 Deploy
 
-> [Click here to view the project!]()
+> [Click here to view the project!](https://investment-calculator-one-ecru.vercel.app/)
 
 
 <!-- ## 💻 Rode Local
@@ -67,7 +67,7 @@ O desafio dessa tarefa foi realizar o projeto todo sozinha, de acordo com a imag
 Durante esse projeto foram utilizadas as seguintes tecnologias:
 - React, Javascript, CSS e ViteJS
 
-Para ver a aplicação rodando é só [clicar aqui]() !
+Para ver a aplicação rodando é só [clicar aqui](https://investment-calculator-one-ecru.vercel.app/) !
 <!-- or run locally following these steps:
 ```
 ETAPAS PARA RODAR LOCAL EM PROJETOS MAIS COMPLEXOS
